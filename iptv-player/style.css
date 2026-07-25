@@ -1,0 +1,845 @@
+/* ============================================
+   RESET Y BASE
+   ============================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #0a0a0a;
+    color: #fff;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* ============================================
+   HEADER CON LOGO
+   ============================================ */
+.header {
+    background: #1a1a1a;
+    padding: 10px 25px;
+    border-bottom: 2px solid #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+    min-height: 70px;
+    gap: 15px;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    min-width: 0;
+}
+
+.header-logo {
+    height: 40px;
+    width: auto;
+    max-height: 50px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.header h1 {
+    font-size: 20px;
+    color: #00d4ff;
+    white-space: nowrap;
+}
+
+.header .badge {
+    background: #00d4ff;
+    color: #000;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.channel-count {
+    font-size: 13px;
+    color: #888;
+}
+
+/* ============================================
+   CONTENEDOR PRINCIPAL
+   ============================================ */
+.container {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+/* ============================================
+   TABLERO DE CANALES (IZQUIERDA)
+   ============================================ */
+.channel-list {
+    width: 320px;
+    min-width: 320px;
+    background: #111;
+    overflow-y: auto;
+    border-right: 2px solid #222;
+    padding: 10px 0;
+    flex-shrink: 0;
+}
+
+.channel-list::-webkit-scrollbar {
+    width: 6px;
+}
+.channel-list::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 3px;
+}
+
+.channel-group {
+    margin-bottom: 5px;
+}
+
+.group-title {
+    background: #1a1a1a;
+    padding: 8px 15px;
+    font-size: 13px;
+    font-weight: bold;
+    color: #00d4ff;
+    border-left: 3px solid #00d4ff;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.channel-item {
+    padding: 10px 15px 10px 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid #1a1a1a;
+    transition: all 0.2s;
+    font-size: 14px;
+}
+
+.channel-item:hover {
+    background: #1a1a1a;
+}
+
+.channel-item.active {
+    background: #00d4ff22;
+    border-left: 3px solid #00d4ff;
+}
+
+.channel-item .priority {
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+.priority.primary {
+    background: #00d4ff;
+    color: #000;
+}
+
+.priority.secondary {
+    background: #ff8800;
+    color: #000;
+}
+
+.channel-item .name {
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* ============================================
+   ÁREA DEL REPRODUCTOR (DERECHA)
+   ============================================ */
+.player-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: #0a0a0a;
+    position: relative;
+    min-width: 0;
+}
+
+.player-wrapper {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000;
+    position: relative;
+    min-height: 200px;
+}
+
+.player-wrapper video {
+    width: 100%;
+    height: 100%;
+    max-height: 100vh;
+    background: #000;
+}
+
+/* ============================================
+   INFO DEL REPRODUCTOR
+   ============================================ */
+.player-info {
+    background: #1a1a1a;
+    padding: 10px 20px;
+    border-top: 1px solid #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+    gap: 8px;
+    min-height: 45px;
+}
+
+.player-info .now-playing {
+    color: #aaa;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex: 1;
+    min-width: 0;
+}
+
+.player-info .now-playing strong {
+    color: #fff;
+}
+
+.player-info .status {
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    flex-shrink: 0;
+}
+
+.status.online {
+    background: #00cc44;
+    color: #000;
+}
+
+.status.offline {
+    background: #cc3333;
+    color: #fff;
+}
+
+.status.loading {
+    background: #ff8800;
+    color: #000;
+}
+
+/* ============================================
+   CONTENEDOR DE OPCIONES (debajo del reproductor)
+   ============================================ */
+.options-container {
+    background: #1a1a1a;
+    padding: 8px 20px;
+    border-top: 1px solid #333;
+    display: none;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    min-height: 40px;
+    flex-shrink: 0;
+    overflow-x: auto;
+}
+
+.options-container::-webkit-scrollbar {
+    height: 4px;
+}
+.options-container::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 2px;
+}
+
+.options-container .option-btn {
+    background: #2a2a2a;
+    color: #aaa;
+    border: 1px solid #333;
+    padding: 4px 12px;
+    border-radius: 16px;
+    font-size: 11px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+    white-space: nowrap;
+}
+
+.options-container .option-btn:hover {
+    background: #3a3a3a;
+    color: #fff;
+    border-color: #555;
+}
+
+.options-container .option-btn.active {
+    background: #00d4ff;
+    color: #000;
+    border-color: #00d4ff;
+    font-weight: bold;
+}
+
+.options-container .option-btn .source-label {
+    font-size: 9px;
+    color: #888;
+    margin-left: 4px;
+    background: #222;
+    padding: 1px 5px;
+    border-radius: 8px;
+}
+
+.options-container .option-btn.active .source-label {
+    background: rgba(0,0,0,0.2);
+    color: #000;
+}
+
+/* ============================================
+   SPINNER Y ERRORES
+   ============================================ */
+.spinner {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 50px;
+    border: 4px solid #333;
+    border-top: 4px solid #00d4ff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    z-index: 10;
+}
+
+.spinner.show {
+    display: block;
+}
+
+@keyframes spin {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.error-msg {
+    color: #ff4444;
+    padding: 20px;
+    text-align: center;
+    display: none;
+    position: absolute;
+    z-index: 5;
+    background: rgba(0,0,0,0.8);
+    width: 100%;
+}
+
+.error-msg.show {
+    display: block;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 1024px) {
+    .channel-list {
+        width: 280px;
+        min-width: 280px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .channel-list {
+        width: 100%;
+        min-width: unset;
+        max-height: 200px;
+        border-right: none;
+        border-bottom: 2px solid #222;
+        flex-shrink: 0;
+    }
+
+    .player-area {
+        flex: 1;
+        min-height: 0;
+    }
+
+    .header {
+        padding: 8px 15px;
+        min-height: 56px;
+    }
+
+    .header-logo {
+        height: 30px;
+        max-height: 36px;
+    }
+
+    .header h1 {
+        font-size: 16px;
+    }
+
+    .header .badge {
+        font-size: 10px;
+        padding: 2px 8px;
+    }
+
+    .player-info {
+        padding: 8px 12px;
+        font-size: 12px;
+        min-height: 38px;
+    }
+
+    .options-container {
+        padding: 6px 12px;
+        min-height: 34px;
+        gap: 4px;
+    }
+
+    .options-container .option-btn {
+        font-size: 10px;
+        padding: 3px 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header h1 {
+        font-size: 14px;
+    }
+
+    .header-logo {
+        height: 24px;
+        max-height: 30px;
+    }
+
+    .channel-list {
+        max-height: 150px;
+    }
+
+    .channel-item {
+        font-size: 12px;
+        padding: 6px 10px 6px 15px;
+    }
+
+    .group-title {
+        font-size: 11px;
+        padding: 5px 12px;
+    }
+
+    .player-info {
+        font-size: 11px;
+        padding: 6px 10px;
+        min-height: 32px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+    }
+
+    .options-container .option-btn {
+        font-size: 9px;
+        padding: 2px 8px;
+    }
+}
+
+/* ============================================
+   LOGO ENCABEZADO (hover sutil)
+   ============================================ */
+.header-logo {
+    transition: opacity 0.3s;
+}
+
+.header-logo:hover {
+    opacity: 0.8;
+}
+
+/* ============================================
+   BARRA DE BÚSQUEDA
+   ============================================ */
+.search-bar {
+    background: #0f0f0f;
+    padding: 8px 20px;
+    border-bottom: 1px solid #222;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+}
+
+.search-bar input {
+    flex: 1;
+    padding: 8px 14px;
+    border: 1px solid #333;
+    border-radius: 20px;
+    background: #1a1a1a;
+    color: #fff;
+    font-size: 14px;
+    outline: none;
+    transition: all 0.3s;
+    min-width: 150px;
+}
+
+.search-bar input::placeholder {
+    color: #555;
+}
+
+.search-bar input:focus {
+    border-color: #00d4ff;
+    background: #222;
+}
+
+.search-bar .clear-btn {
+    background: #333;
+    border: none;
+    color: #aaa;
+    padding: 4px 12px;
+    border-radius: 16px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s;
+}
+
+.search-bar .clear-btn:hover {
+    background: #444;
+    color: #fff;
+}
+
+.search-bar .show-all-btn {
+    background: #00d4ff;
+    border: none;
+    color: #000;
+    padding: 4px 14px;
+    border-radius: 16px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: bold;
+    transition: all 0.2s;
+}
+
+.search-bar .show-all-btn:hover {
+    background: #00e5ff;
+    transform: scale(1.02);
+}
+
+/* ============================================
+   BOTÓN DE FAVORITOS EN HEADER
+   ============================================ */
+.favorites-btn {
+    background: transparent;
+    border: 1px solid #333;
+    color: #ffcc00;
+    padding: 4px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-family: inherit;
+}
+
+.favorites-btn:hover {
+    background: #1a1a1a;
+    border-color: #ffcc00;
+}
+
+.favorites-btn.active {
+    background: #ffcc00;
+    color: #000;
+    border-color: #ffcc00;
+}
+
+.favorites-btn #favoritesCount {
+    background: #333;
+    color: #fff;
+    padding: 0 6px;
+    border-radius: 10px;
+    font-size: 11px;
+    min-width: 18px;
+    text-align: center;
+}
+
+.favorites-btn.active #favoritesCount {
+    background: rgba(0,0,0,0.2);
+    color: #000;
+}
+
+/* ============================================
+   ITEMS DE CANAL CON NÚMERO Y FAVORITO
+   ============================================ */
+.channel-item .number {
+    color: #555;
+    font-size: 11px;
+    min-width: 28px;
+    text-align: right;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+.channel-item .fav-btn {
+    background: transparent;
+    border: none;
+    color: #444;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.2s;
+    padding: 0 4px;
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+.channel-item .fav-btn:hover {
+    color: #ffcc00;
+    transform: scale(1.1);
+}
+
+.channel-item .fav-btn.favorited {
+    color: #ffcc00;
+}
+
+.channel-item .fav-btn.favorited:hover {
+    color: #ffaa00;
+}
+
+/* ============================================
+   SIN RESULTADOS
+   ============================================ */
+.no-results {
+    padding: 40px 20px;
+    text-align: center;
+    color: #666;
+    font-size: 16px;
+}
+
+.no-results span {
+    display: block;
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+/* ============================================
+   RESPONSIVE - BÚSQUEDA
+   ============================================ */
+@media (max-width: 768px) {
+    .search-bar {
+        padding: 6px 12px;
+    }
+    
+    .search-bar input {
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+    
+    .search-bar .show-all-btn {
+        font-size: 11px;
+        padding: 3px 10px;
+    }
+    
+    .channel-item .number {
+        font-size: 10px;
+        min-width: 22px;
+    }
+    
+    .channel-item .fav-btn {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .search-bar input {
+        font-size: 11px;
+        padding: 5px 10px;
+    }
+    
+    .favorites-btn {
+        font-size: 12px;
+        padding: 3px 10px;
+    }
+}
+
+/* ============================================
+   ESTADOS DE ERROR MEJORADOS
+   ============================================ */
+.status.offline {
+    background: #cc3333;
+    color: #fff;
+}
+
+.status.offline::before {
+    content: "❌ ";
+}
+
+.status.audioonly {
+    background: #ff8800;
+    color: #000;
+}
+
+.status.audioonly::before {
+    content: "🔊 ";
+}
+
+.status.loading::before {
+    content: "⏳ ";
+}
+
+.status.online::before {
+    content: "✅ ";
+}
+
+/* ============================================
+   ERROR MSG MEJORADO
+   ============================================ */
+.error-msg {
+    color: #ff4444;
+    padding: 20px;
+    text-align: center;
+    display: none;
+    position: absolute;
+    z-index: 5;
+    background: rgba(0,0,0,0.85);
+    width: 100%;
+    font-size: 15px;
+    border-left: 4px solid #ff4444;
+}
+
+.error-msg.audioonly {
+    border-left: 4px solid #ff8800;
+    background: rgba(255, 136, 0, 0.15);
+    color: #ffaa44;
+}
+
+.error-msg.network {
+    border-left: 4px solid #ff8800;
+    background: rgba(255, 136, 0, 0.1);
+}
+
+.error-msg.show {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================
+   BOTONES DE OPCIÓN CON ESTADO
+   ============================================ */
+.option-btn.error-btn {
+    border-color: #cc3333;
+    background: #2a0a0a;
+    color: #ff6666;
+}
+
+.option-btn.error-btn.active {
+    background: #cc3333;
+    color: #fff;
+    border-color: #cc3333;
+}
+
+.option-btn.error-btn .source-label {
+    background: #3a1a1a;
+    color: #ff6666;
+}
+
+.option-btn.error-btn.active .source-label {
+    background: rgba(0,0,0,0.2);
+    color: #fff;
+}
+
+.option-btn.audioonly-btn {
+    border-color: #ff8800;
+    background: #2a1a00;
+    color: #ffaa44;
+}
+
+.option-btn.audioonly-btn.active {
+    background: #ff8800;
+    color: #000;
+    border-color: #ff8800;
+}
+
+.option-btn.audioonly-btn .source-label {
+    background: #3a2a00;
+    color: #ffaa44;
+}
+
+.option-btn.audioonly-btn.active .source-label {
+    background: rgba(0,0,0,0.2);
+    color: #000;
+}
+
+/* ============================================
+   INDICADOR DE CODEC
+   ============================================ */
+.codec-info {
+    font-size: 10px;
+    color: #666;
+    margin-left: 8px;
+    padding: 2px 8px;
+    background: #1a1a1a;
+    border-radius: 10px;
+    border: 1px solid #333;
+}
+
+.codec-info.h264 {
+    border-color: #00cc44;
+    color: #00cc44;
+}
+
+.codec-info.hevc {
+    border-color: #ff8800;
+    color: #ff8800;
+}
+
+.codec-info.unsupported {
+    border-color: #cc3333;
+    color: #cc3333;
+}
+
+/* ============================================
+   INDICADOR DE ESTRATEGIA DE REPRODUCCIÓN
+   ============================================ */
+.strategy-indicator {
+    font-size: 10px;
+    color: #888;
+    margin-left: 8px;
+    padding: 2px 8px;
+    background: #1a1a1a;
+    border-radius: 10px;
+    border: 1px solid #333;
+    display: inline-block;
+}
+
+.strategy-indicator.active {
+    border-color: #00d4ff;
+    color: #00d4ff;
+}
+
+.strategy-indicator.fallback {
+    border-color: #ff8800;
+    color: #ff8800;
+}
+
+.strategy-indicator.failed {
+    border-color: #cc3333;
+    color: #cc3333;
+}
