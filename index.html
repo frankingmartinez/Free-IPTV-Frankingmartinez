@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frankingmartinez - Television Libre</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="header">
+        <div class="header-left">
+            <img src="Lumii_20250805_171106180.png" alt="Logo" class="header-logo" id="headerLogo">
+            <h1>Television Libre por IPTV</h1>
+        </div>
+        <div class="header-right">
+            <!-- BOTÓN DE FAVORITOS -->
+            <button class="favorites-btn" id="favoritesBtn" title="Ver canales favoritos">
+                ⭐ <span id="favoritesCount">0</span>
+            </button>
+            <span class="channel-count" id="channelCount">0 canales</span>
+        </div>
+    </div>
+
+    <!-- BARRA DE BÚSQUEDA -->
+    <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="🔍 Buscar canal..." autocomplete="off">
+        <button id="clearSearchBtn" class="clear-btn" style="display: none;">✕</button>
+        <button id="showAllBtn" class="show-all-btn" style="display: none;">Mostrar todos</button>
+    </div>
+
+    <div class="container">
+        <div class="channel-list" id="channelList">
+            <!-- Se llena con JS -->
+        </div>
+
+        <div class="player-area">
+            <div class="player-wrapper">
+                <div class="spinner" id="spinner"></div>
+                <video id="videoPlayer" controls autoplay playsinline></video>
+                <div class="error-msg" id="errorMsg">❌ No se pudo cargar el stream. Probá con otro canal.</div>
+            </div>
+            <div class="player-info">
+                <div class="now-playing">▶ <strong id="nowPlaying">Seleccioná un canal</strong></div>
+                <div>
+                    <span class="status" id="statusBadge">⏸ Esperando</span>
+                </div>
+            </div>
+            <!-- CONTENEDOR DE OPCIONES -->
+            <div id="optionsContainer" class="options-container"></div>
+        </div>
+    </div>
+
+    <!-- Agregar en index.html -->
+    <script src="https://unpkg.com/@ffmpeg/ffmpeg@0.11.6/dist/ffmpeg.min.js"></script>
+    <script src="https://unpkg.com/@ffmpeg/core@0.11.0/dist/ffmpeg-core.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <script src="script.js"></script>
+
+</body>
+</html>
